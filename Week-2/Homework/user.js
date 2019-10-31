@@ -1,3 +1,5 @@
+const Chalk = require('chalk');
+
 module.exports = class User {
   constructor(name, email) {
     this.name = name;
@@ -10,12 +12,12 @@ module.exports = class User {
   }
 
   printAllTickets() {
-    console.log('Tickets bought by ' + this.name)
-    this.tickets.forEach((ticket) => console.log('for ' + ticket.person.name + ': ' + ticket.eventTitle + ' EUR ' + ticket.price));
+    console.log('Tickets bought by ' + Chalk.blue(this.name))
+    this.tickets.forEach((ticket) => console.log('for ' + Chalk.red(ticket.person.name) + ': ' + Chalk.bgGreenBright.black(ticket.eventTitle) + ' EUR ' + ticket.price));
   }
 
   printTicketsForPerson(person) {
-    console.log('Tickets bought by ' + this.name + ' for ' + person.name + ':');
+    console.log('Tickets bought by ' + Chalk.blue(this.name) + ' for ' + Chalk.red(person.name) + ':');
     this.tickets
       .filter((ticket) => ticket.person == person)
       .forEach((ticket) => console.log(ticket.eventTitle + ' EUR ' + ticket.price));
