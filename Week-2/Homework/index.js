@@ -1,6 +1,7 @@
 const User = require('./user.js');
 const Person = require('./person.js');
 const Event = require('./event.js');
+const Database = require('./database');
 
 technikmuseum = new Event('Technikmuseum Berlin', '8,00', '4,00');
 zoo = new Event('Berlin Zoological Garden', '15,50', '10,50');
@@ -21,7 +22,6 @@ katyaJ = new Person('Katya J', 8);
 user1.buy(zoo.createTicket(tanya));
 user1.buy(zoo.createTicket(maria));
 user1.buy(zoo.createTicket(katya));
-
 user1.buy(tierpark.createTicket(maria));
 
 
@@ -37,3 +37,10 @@ user1.printTicketsForPerson(maria);
 console.log('=============');
 user2.printAllTickets();
 console.log('=============');
+
+let persons = [tanya, maria, katya, katyaJ];
+Database.save('./person.json', persons);
+
+const loadedFile = Database.load('./person.json');
+
+loadedFile.forEach(function(value) {console.log(value)});
