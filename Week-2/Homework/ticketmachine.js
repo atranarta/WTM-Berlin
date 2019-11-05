@@ -11,14 +11,14 @@ module.exports = class TicketMachine {
 
   printAllTickets() {
     console.log('Tickets:')
-    this.tickets.forEach((ticket) => console.log('for ' + Chalk.red(ticket.userName) + ': ' + Chalk.bgGreenBright.black(ticket.eventTitle) + ' EUR ' + ticket.price));
+    this.tickets.forEach((ticket) => console.log('for ' + Chalk.red(ticket.userName) + ': ' + Chalk.bgGreenBright.black(ticket.eventTitle) + Chalk.yellow(' EUR ') + Chalk.yellow(ticket.price)));
   }
 
   printTicketsForUser(user) {
     console.log('Tickets for ' + Chalk.red(user.name) + ':');
     this.tickets
       .filter((ticket) => ticket.userName == user.name)
-      .forEach((ticket) => console.log(ticket.eventTitle + ' EUR ' + ticket.price));
+      .forEach((ticket) => console.log(Chalk.blue(ticket.eventTitle) + ' EUR ' + ticket.price));
   }
 
   getAllTickets() {
