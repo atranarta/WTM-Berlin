@@ -3,7 +3,6 @@ const Event = require('./event.js');
 const Database = require('./database');
 const TicketMachine  = require('./ticketmachine');
 
-
 const technikmuseum = new Event('Technikmuseum Berlin', '8,00', '4,00');
 const zoo = new Event('Berlin Zoological Garden', '15,50', '10,50');
 const tierpark = new Event('Tierpark Berlin', '14,50', '9,50');
@@ -32,8 +31,8 @@ console.log('=============');
 ticketMachine.printTicketsForUser(maria);
 console.log('=============');
 
-Database.save('./tickets.json', ticketMachine.getAllTickets());
+Database.save('tickets.json', ticketMachine.getAllTickets());
 
-const loadedFile = Database.load('./tickets.json');
+const loadedFile = Database.load('tickets.json');
 
 loadedFile.forEach(function(value) {console.log(value)});
