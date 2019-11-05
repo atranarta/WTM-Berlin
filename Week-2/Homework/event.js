@@ -6,10 +6,10 @@ module.exports = class Event {
     this.priceAdult = priceAdult;
     this.priceReduced = priceReduced;
   }
+  
+  createTicket(user) {
+    let price = user.age < 12 ? this.priceReduced : this.priceAdult;
 
-  createTicket(person) {
-    let price = person.age < 12 ? this.priceReduced : this.priceAdult;
-
-    return new Ticket(person, this.title, price);
+    return new Ticket(this.title, price, user.name, user.age);
   }
 }

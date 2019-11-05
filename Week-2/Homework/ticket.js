@@ -1,7 +1,8 @@
 module.exports = class Ticket {
-  constructor(person, eventTitle, price) {
-    this.person = person;
+  constructor(eventTitle, price, userName, userAge) {
     this.eventTitle = eventTitle;
     this.price = price;
+    this.userName = userName;
+    this.userAge = userAge;
   }
 }

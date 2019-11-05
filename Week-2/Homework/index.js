@@ -1,46 +1,39 @@
 const User = require('./user.js');
-const Person = require('./person.js');
 const Event = require('./event.js');
 const Database = require('./database');
-
-technikmuseum = new Event('Technikmuseum Berlin', '8,00', '4,00');
-zoo = new Event('Berlin Zoological Garden', '15,50', '10,50');
-tierpark = new Event('Tierpark Berlin', '14,50', '9,50');
-naturkunde = new Event('Museum für Naturkunde Berlin', '8,00', '5,00');
-pergamonmuseum = new Event('Pergamonmuseum Berlin', '19', '9,50');
+const TicketMachine  = require('./ticketmachine');
 
 
-user1 = new User('Tanya', 'my@mail.com');
-user2 = new User('Zoidberg', 'Zoidberg@mail.com');
+const technikmuseum = new Event('Technikmuseum Berlin', '8,00', '4,00');
+const zoo = new Event('Berlin Zoological Garden', '15,50', '10,50');
+const tierpark = new Event('Tierpark Berlin', '14,50', '9,50');
+const naturkunde = new Event('Museum für Naturkunde Berlin', '8,00', '5,00');
+const pergamonmuseum = new Event('Pergamonmuseum Berlin', '19', '9,50');
 
-tanya = new Person('Tanya', 30);
-maria = new Person('Maria', 31);
-katya = new Person('Katya', 22);
-katyaJ = new Person('Katya J', 8);
+const ticketMachine = new TicketMachine();
 
-
-user1.buy(zoo.createTicket(tanya));
-user1.buy(zoo.createTicket(maria));
-user1.buy(zoo.createTicket(katya));
-user1.buy(tierpark.createTicket(maria));
-
-
-user2.buy(naturkunde.createTicket(tanya));
-user2.buy(pergamonmuseum.createTicket(maria));
-user2.buy(tierpark.createTicket(katya));
-user2.buy(tierpark.createTicket(katyaJ));
+const tanya = new User('Tanya', 30);
+const maria = new User('Maria', 31);
+const katya = new User('Katya', 22);
+const katyaJ = new User('Katya J', 8);
 
 
-user1.printAllTickets();
+ticketMachine.buyTicket(zoo, tanya);
+ticketMachine.buyTicket(technikmuseum, maria);
+ticketMachine.buyTicket(zoo, katya);
+ticketMachine.buyTicket(tierpark, maria);
+ticketMachine.buyTicket(naturkunde, tanya);
+ticketMachine.buyTicket(pergamonmuseum, maria);
+ticketMachine.buyTicket(tierpark, katya);
+ticketMachine.buyTicket(tierpark, katyaJ);
+
+ticketMachine.printAllTickets();
 console.log('=============');
-user1.printTicketsForPerson(maria);
-console.log('=============');
-user2.printAllTickets();
+ticketMachine.printTicketsForUser(maria);
 console.log('=============');
 
-let persons = [tanya, maria, katya, katyaJ];
-Database.save('./person.json', persons);
+Database.save('./tickets.json', ticketMachine.getAllTickets());
 
-const loadedFile = Database.load('./person.json');
+const loadedFile = Database.load('./tickets.json');
 
 loadedFile.forEach(function(value) {console.log(value)});

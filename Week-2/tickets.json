@@ -1,0 +1,50 @@
+[
+  {
+    "eventTitle": "Berlin Zoological Garden",
+    "price": "15,50",
+    "userName": "Tanya",
+    "userAge": 30
+  },
+  {
+    "eventTitle": "Technikmuseum Berlin",
+    "price": "8,00",
+    "userName": "Maria",
+    "userAge": 31
+  },
+  {
+    "eventTitle": "Berlin Zoological Garden",
+    "price": "15,50",
+    "userName": "Katya",
+    "userAge": 22
+  },
+  {
+    "eventTitle": "Tierpark Berlin",
+    "price": "14,50",
+    "userName": "Maria",
+    "userAge": 31
+  },
+  {
+    "eventTitle": "Museum für Naturkunde Berlin",
+    "price": "8,00",
+    "userName": "Tanya",
+    "userAge": 30
+  },
+  {
+    "eventTitle": "Pergamonmuseum Berlin",
+    "price": "19",
+    "userName": "Maria",
+    "userAge": 31
+  },
+  {
+    "eventTitle": "Tierpark Berlin",
+    "price": "14,50",
+    "userName": "Katya",
+    "userAge": 22
+  },
+  {
+    "eventTitle": "Tierpark Berlin",
+    "price": "9,50",
+    "userName": "Katya J",
+    "userAge": 8
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Tanya",
+    "age": 30,
+    "tickets": [
+      {
+        "user": "Maria",
+        "eventTitle": "Berlin Zoological Garden",
+        "price": "15,50"
+      },
+      {
+        "user": "Katya",
+        "eventTitle": "Berlin Zoological Garden",
+        "price": "15,50"
+      },
+      {
+        "user": "Maria",
+        "eventTitle": "Pergamonmuseum Berlin",
+        "price": "19"
+      },
+      {
+        "user": "Katya J",
+        "eventTitle": "Tierpark Berlin",
+        "price": "9,50"
+      }
+    ]
+  },
+  {
+    "name": "Maria",
+    "age": 31,
+    "tickets": [
+      {
+        "user": "Tanya",
+        "eventTitle": "Berlin Zoological Garden",
+        "price": "15,50"
+      },
+      {
+        "user": "Katya",
+        "eventTitle": "Tierpark Berlin",
+        "price": "14,50"
+      }
+    ]
+  },
+  {
+    "name": "Katya",
+    "age": 22,
+    "tickets": [
+      {
+        "user": "Maria",
+        "eventTitle": "Tierpark Berlin",
+        "price": "14,50"
+      },
+      {
+        "user": "Tanya",
+        "eventTitle": "Museum für Naturkunde Berlin",
+        "price": "8,00"
+      }
+    ]
+  },
+  {
+    "name": "Katya J",
+    "age": 8,
+    "tickets": []
+  }
+]
