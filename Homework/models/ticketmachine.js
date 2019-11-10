@@ -1,8 +1,10 @@
 const Chalk = require('chalk');
+const Ticket = require('./ticket');
 
 module.exports = class TicketMachine {
-  constructor() {
-    this.tickets = [];
+  constructor(id, tickets = []) {
+    this.id = id;
+    this.tickets = tickets;
   }
 
   buyTicket(event, user) {
@@ -10,7 +12,7 @@ module.exports = class TicketMachine {
   }
 
   printAllTickets() {
-    console.log('Tickets:')
+    console.log('Tickets:');
     this.tickets.forEach((ticket) => console.log('for ' + Chalk.red(ticket.userName) + ': ' + Chalk.bgGreenBright.black(ticket.eventTitle) + Chalk.yellow(' EUR ') + Chalk.yellow(ticket.price)));
   }
 
@@ -24,4 +26,12 @@ module.exports = class TicketMachine {
   getAllTickets() {
     return this.tickets;
   }  
-}
+
+  static create({ id, tickets}) {
+    return new TicketMachine(
+      id,
+      tickets.map(Ticket.create)
+    );
+  } 
+  
+};

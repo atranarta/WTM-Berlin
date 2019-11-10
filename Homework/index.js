@@ -1,38 +1,55 @@
-const User = require('./user.js');
-const Event = require('./event.js');
-const Database = require('./database');
-const TicketMachine  = require('./ticketmachine');
+const User = require('./models/user');
+const Event = require('./models/event');
+const TicketMachine = require('./models/ticketmachine');
+const UserService = require('./services/user-service');
+const EventService = require('./services/event-service');
+const TicketMachineService = require('./services/ticket-machine-service');
 
-const technikmuseum = new Event('Technikmuseum Berlin', '8,00', '4,00');
-const zoo = new Event('Berlin Zoological Garden', '15,50', '10,50');
-const tierpark = new Event('Tierpark Berlin', '14,50', '9,50');
-const naturkunde = new Event('Museum für Naturkunde Berlin', '8,00', '5,00');
-const pergamonmuseum = new Event('Pergamonmuseum Berlin', '19', '9,50');
+async function main() {
+  const zoo = new Event('Berlin Zoological Garden', '15,50', '10,50');
+  const tierpark = new Event('Tierpark Berlin', '14,50', '9,50');
 
-const ticketMachine = new TicketMachine();
+  const tanya = new User('Tanya', 30);
+  const katyaJ = new User('Katya J', 8);
 
-const tanya = new User('Tanya', 30);
-const maria = new User('Maria', 31);
-const katya = new User('Katya', 22);
-const katyaJ = new User('Katya J', 8);
+  const ticketMachine = new TicketMachine();
 
+  ticketMachine.buyTicket(tierpark, tanya);
+  ticketMachine.buyTicket(zoo, tanya);
+  ticketMachine.buyTicket(zoo, katyaJ);
+  
+  ticketMachine.printAllTickets();
+  console.log('=============');
+  ticketMachine.printTicketsForUser(tanya);
+  console.log('=============');
 
-ticketMachine.buyTicket(zoo, tanya);
-ticketMachine.buyTicket(technikmuseum, maria);
-ticketMachine.buyTicket(zoo, katya);
-ticketMachine.buyTicket(tierpark, maria);
-ticketMachine.buyTicket(naturkunde, tanya);
-ticketMachine.buyTicket(pergamonmuseum, maria);
-ticketMachine.buyTicket(tierpark, katya);
-ticketMachine.buyTicket(tierpark, katyaJ);
+  // await UserService.add(tanya);
+  // await UserService.add(katyaJ);
 
-ticketMachine.printAllTickets();
-console.log('=============');
-ticketMachine.printTicketsForUser(maria);
-console.log('=============');
+  // await EventService.add(zoo);
+  // await EventService.add(tierpark);
 
-Database.save('tickets.json', ticketMachine.getAllTickets());
+  // await TicketMachineService.add(ticketMachine);
 
-const loadedFile = Database.load('tickets.json');
+  const people = await UserService.findAll();
+  console.log(people[0].name);
 
-loadedFile.forEach(function(value) {console.log(value)});
+  const events = await EventService.findAll();
+  console.log(events);
+  console.log(events[1].title);
+
+  const loadedTicketMachine = await TicketMachineService.find(1);
+
+  loadedTicketMachine.printAllTickets();
+  loadedTicketMachine.printTicketsForUser(people[0]);
+
+  // await PersonService.del(1);
+  // await PersonService.del(2);
+
+  // await EventService.del(1);
+  // await EventService.del(2);
+
+  // await TicketMachineService.del(1);
+} 
+
+main();

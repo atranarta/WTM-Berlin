@@ -1,10 +1,11 @@
-const Ticket = require('./ticket.js');
+const Ticket = require('./ticket');
 
 module.exports = class Event {
-  constructor(title, priceAdult, priceReduced) {
+  constructor(title, priceAdult, priceReduced, id) {
     this.title = title;
     this.priceAdult = priceAdult;
     this.priceReduced = priceReduced;
+    this.id = id;
   }
   
   createTicket(user) {
@@ -12,4 +13,9 @@ module.exports = class Event {
 
     return new Ticket(this.title, price, user.name, user.age);
   }
-}
+
+  static create({ title, priceAdult, priceReduced, id }) {
+    return new Event(title, priceAdult, priceReduced, id);
+  }
+
+};

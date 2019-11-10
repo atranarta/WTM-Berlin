@@ -9,6 +9,7 @@
   "author": "Tetiana Rabiievska",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^2.4.2"
+    "chalk": "^2.4.2",
+    "flatted": "^2.0.1"
   }
 }

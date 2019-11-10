@@ -5,4 +5,8 @@ module.exports = class Ticket {
     this.userName = userName;
     this.userAge = userAge;
   }
-}
+
+  static create({ eventTitle, price, userName, userAge }) {
+    return new Ticket(eventTitle, price, userName, userAge);
+  } 
+};

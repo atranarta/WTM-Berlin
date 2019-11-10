@@ -8,6 +8,6 @@ const load = function(filename, callback) {
   fs.readFile(filename, 'utf8', (err, file) => {
     callback(err, JSON.parse(file));
   });
-}
+};
 
 module.exports = { save, load };
