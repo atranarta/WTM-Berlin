@@ -1,62 +1,37 @@
-const Database = require('./database');
-const Meetup = require('./meetup');
-const Person = require('./person');
+const express = require('express')
+const bodyParser = require('body-parser')
 
-Database.load('meetup.json', ((err, loadedFile) => {
-  if (err) throw err;
-  
-  console.log('Hello');
-  const wtmb = Meetup.create(loadedFile);
-  const janna = new Person('Janna', 30);
+const PersonService = require('./services/person-service')
 
-  janna.attend(wtmb);
-  // Meetup.create({ name: 'hello!', attendees: [] });
-  // Database.save('./meetup.json', wtmb);
-  wtmb.printAttendeeNames();
+const app = express()
 
-  console.log(wtmb.name);
-}));
+app.set('view engine', 'pug')
+app.use(bodyParser.json())
 
+app.get('/', (req, res) => {
+  res.render('index')
+})
 
+app.get('/person/all', async (req, res) => {
+  const people = await PersonService.findAll()
+  res.render('person', { people })
+})
 
+app.get('/person/:id', async (req, res) => {
+  const user = await PersonService.find(req.params.id)
+  res.send(user)
+})
 
+app.post('/person', async (req, res) => {
+  const user = await PersonService.add(req.body)
+  res.send(user)
+})
 
-// -----Example-----
-// const Person = require('.person')
-// const Meetup = require('.meetup')
-// const PersonService = require('./services/person-service')
-// const MeetupService = require('./services/meetup-service')
+app.delete('/person/:id', async (req, res) => {
+  const user = await PersonService.del(req.params.id)
+  res.send(user)
+})
 
-// console.log('Hello World!')
-// console.log('Hello World!')
-
-// async function main() {
-//   const mert = new Person('Mert', 33)
-//   const armagan = new Person('Armagan', 34)
-
-//   const wtmb = new Meetup('Women Tech Makers Berlin', 'Eurostaff')
-//   armagan.attend(wtmb)
-//   mert.attend(wtmb)
-//   wtmb.report()
-
-//   await PersonService.add(mert)
-//   await PersonService.add(armagan)
-
-//   const people = await PersonService.findAll()
-
-//   console.log(people[0].name)
-
-//   await PersonService.del(1)
-
-//   const newPeople = await PersonService.findAll()
-
-//   console.log(newPeople[0].name)
-// }
-
-// main()
-
-
-
-
-
-
+app.listen(3000, () => {
+  console.log('Server listening')
+})
