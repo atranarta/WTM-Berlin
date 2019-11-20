@@ -1,1 +1,46 @@
-[["1","2"],{"id":1,"tickets":"3"},{"id":2,"tickets":"4"},["5","6","7"],["8","9","10","11"],{"eventTitle":"12","price":"13","userName":"14","userAge":30},{"eventTitle":"15","price":"16","userName":"14","userAge":30},{"eventTitle":"15","price":"17","userName":"18","userAge":8},{"eventTitle":"12","price":"13","userName":"14","userAge":30},{"eventTitle":"15","price":"16","userName":"14","userAge":30},{"eventTitle":"15","price":"17","userName":"18","userAge":8},{"eventTitle":"15","price":"16","userName":"14","userAge":30},"Tierpark Berlin","14,50","Tanya","Berlin Zoological Garden","15,50","10,50","Katya J"]
+[
+  ["1", "2"], {
+    "id": 1,
+    "tickets": "3"
+  }, {
+    "id": 2,
+    "tickets": "4"
+  },
+  ["5", "6", "7"],
+  ["8", "9", "10", "11"], {
+    "eventTitle": "12",
+    "price": "13",
+    "userName": "14",
+    "userAge": 30
+  }, {
+    "eventTitle": "15",
+    "price": "16",
+    "userName": "14",
+    "userAge": 30
+  }, {
+    "eventTitle": "15",
+    "price": "17",
+    "userName": "18",
+    "userAge": 8
+  }, {
+    "eventTitle": "12",
+    "price": "13",
+    "userName": "14",
+    "userAge": 30
+  }, {
+    "eventTitle": "15",
+    "price": "16",
+    "userName": "14",
+    "userAge": 30
+  }, {
+    "eventTitle": "15",
+    "price": "17",
+    "userName": "18",
+    "userAge": 8
+  }, {
+    "eventTitle": "15",
+    "price": "16",
+    "userName": "14",
+    "userAge": 30
+  }, "Tierpark Berlin", "14,50", "Tanya", "Berlin Zoological Garden", "15,50", "10,50", "Katya J"
+]

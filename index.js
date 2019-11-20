@@ -72,7 +72,7 @@ app.post('/tm/:id/buy', async (req, res) => {
 
 app.get('/tm/:id/tickets', async (req, res) => {
   const tm = await TicketMachineService.find(req.params.id);
-  res.send({tickets: tm.getAllTickets()});  
+  res.render('ticketmachine', {tickets: tm.getAllTickets()});  
 });
 
 app.get('/tm/:id/tickets-for/:user_id', async (req, res) => {
@@ -83,7 +83,7 @@ app.get('/tm/:id/tickets-for/:user_id', async (req, res) => {
     res.send(404, 'User not found');
   }
 
-  res.send({tickets: tm.getTicketsForUser(user)});  
+  res.render('ticketmachinePerUser', {tickets: tm.getTicketsForUser(user), userName: user.name});  
 });
 
 
