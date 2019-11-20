@@ -1,25 +1,17 @@
-const fs = require('fs');
-const Flatted = require('flatted/cjs');
-
 module.exports = class Service {
-  constructor(model, dbPath) {
-    this.model = model;
-    this.dbPath = dbPath;
-  }
-
   async findAll() {
-    return this.model.find();
+    return this.model.find()
   }
 
   async add(item) {
-    return this.model.create(item);
+    return this.model.create(item)
   }
 
-  async del(itemId) {
-    return this.model.remove({ _id: itemId });
+  async  del(itemId) {
+    return this.model.remove({ _id: itemId })
   }
 
   async find(itemId) {
-    return this.model.findById(itemId);
+    return this.model.findById(itemId)
   }
-};
+}
