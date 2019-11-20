@@ -1,91 +1,24 @@
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 
-const UserService = require('./services/user-service');
-const EventService = require('./services/event-service');
-const TicketMachineService = require('./services/ticket-machine-service');
+const userRouter = require('./routes/user');
+const eventRouter = require('./routes/event');
+const ticketmachineRouter = require('./routes/ticketmachine');
+
+require('./mongo-connection')
 
 const app = express();
 
 app.set('view engine', 'pug');
 app.use(bodyParser.json());
 
+app.use('/user', userRouter)
+app.use('/event', eventRouter)
+app.use('/ticketmachine', ticketmachineRouter)
+
 app.get('/', (req, res) => {
   res.render('index');
 });
-
-app.get('/user/all', async (req, res) => {
-  const users = await UserService.findAll();
-  res.render('user', { users });  
-});
-
-app.get('/user/:id', async (req, res) => {
-  const user = await UserService.find(req.params.id);
-  res.send(user);
-});
-
-app.post('/user', async (req, res) => {
-  const user = await UserService.add(req.body)
-  res.send(user)
-});
-
-app.delete('/user/:id', async (req, res) => {
-  const user = await UserService.del(req.params.id)
-  res.send(user)
-});
-
-app.get('/event/all', async (req, res) => {
-  const events = await EventService.findAll();
-  res.render('event', { events });  
-});
-
-app.get('/event/:id', async (req, res) => {
-  const event = await EventService.find(req.params.id);
-  res.send(event);
-});
-
-app.post('/event', async (req, res) => {
-  const event = await EventService.add(req.body);
-  res.send(event);
-});
-
-app.delete('/event/:id', async (req, res) => {
-  const event = await EventService.del(req.params.id);
-  res.send(event);
-});
-
-app.post('/tm/create', async (req, res) => {
-  const tm = await TicketMachineService.add(req.body);
-  res.send(tm);
-});
-
-app.post('/tm/:id/buy', async (req, res) => {
-  const tm = await TicketMachineService.find(req.params.id);
-  const event = await EventService.find(req.body.event_id);
-  const user = await UserService.find(req.body.user_id);
-
-  tm.buyTicket(event, user);
-
-  // TicketMachineService.save(tm); ???
-  res.send(tm)
-});
-
-app.get('/tm/:id/tickets', async (req, res) => {
-  const tm = await TicketMachineService.find(req.params.id);
-  res.render('ticketmachine', {tickets: tm.getAllTickets()});  
-});
-
-app.get('/tm/:id/tickets-for/:user_id', async (req, res) => {
-  const tm = await TicketMachineService.find(req.params.id);
-  const user = await UserService.find(req.params.user_id);
-
-  if (!user) {
-    res.send(404, 'User not found');
-  }
-
-  res.render('ticketmachinePerUser', {tickets: tm.getTicketsForUser(user), userName: user.name});  
-});
-
 
 app.listen(3000, () => {
   console.log('Server listening');
