@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 Tickets:
+  each ticket in tickets
+    h4 for #{user.name}: #{event.title} EUR #{event.title} #{ticket.price}
+  each user in users
+    h4 Tickets for #{user.name}: 
+
+
+  

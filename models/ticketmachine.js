@@ -25,7 +25,11 @@ module.exports = class TicketMachine {
 
   getAllTickets() {
     return this.tickets;
-  }  
+  }
+  
+  getTicketsForUser(user) {
+    return this.tickets.filter((ticket) => ticket.userName == user.name);
+  }
 
   static create({ id, tickets}) {
     return new TicketMachine(
