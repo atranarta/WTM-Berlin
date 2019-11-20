@@ -5,7 +5,7 @@ const userRouter = require('./routes/user');
 const eventRouter = require('./routes/event');
 const ticketmachineRouter = require('./routes/ticketmachine');
 
-// require('./mongo-connection')
+require('./mongo-connection')
 
 const app = express();
 
