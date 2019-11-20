@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const TicketMachineService = require('./services/ticket-machine-service');
+const TicketMachineService = require('../services/ticket-machine-service');
 
 router.post('/tm/create', async (req, res) => {
   const tm = await TicketMachineService.add(req.body);
@@ -34,3 +34,5 @@ router.get('/tm/:id/tickets-for/:user_id', async (req, res) => {
 
   res.render('ticketmachinePerUser', {tickets: tm.getTicketsForUser(user), userName: user.name});  
 });
+
+module.exports = router;

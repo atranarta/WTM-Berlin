@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const EventService = require('./services/event-service');
+const EventService = require('../services/event-service');
 
 router.get('/event/all', async (req, res) => {
   const events = await EventService.findAll();
