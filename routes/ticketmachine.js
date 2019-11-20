@@ -3,12 +3,12 @@ const router = express.Router();
 
 const TicketMachineService = require('../services/ticket-machine-service');
 
-router.post('/tm/create', async (req, res) => {
+router.post('/create', async (req, res) => {
   const tm = await TicketMachineService.add(req.body);
   res.send(tm);
 });
 
-router.post('/tm/:id/buy', async (req, res) => {
+router.post('/:id/buy', async (req, res) => {
   const tm = await TicketMachineService.find(req.params.id);
   const event = await EventService.find(req.body.event_id);
   const user = await UserService.find(req.body.user_id);
@@ -19,12 +19,12 @@ router.post('/tm/:id/buy', async (req, res) => {
   res.send(tm)
 });
 
-router.get('/tm/:id/tickets', async (req, res) => {
+router.get('/:id/tickets', async (req, res) => {
   const tm = await TicketMachineService.find(req.params.id);
   res.render('ticketmachine', {tickets: tm.getAllTickets()});  
 });
 
-router.get('/tm/:id/tickets-for/:user_id', async (req, res) => {
+router.get('/:id/tickets-for/:user_id', async (req, res) => {
   const tm = await TicketMachineService.find(req.params.id);
   const user = await UserService.find(req.params.user_id);
 

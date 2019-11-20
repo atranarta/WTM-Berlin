@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 app.use('/user', userRouter)
 app.use('/event', eventRouter)
-app.use('/ticketmachine', ticketmachineRouter)
+app.use('/tm', ticketmachineRouter)
 
 app.get('/', (req, res) => {
   res.render('index');
