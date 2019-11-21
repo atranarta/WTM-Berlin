@@ -1,41 +1,51 @@
-const Chalk = require('chalk');
-const Ticket = require('./ticket');
+const mongoose = require('mongoose');
 
-module.exports = class TicketMachine {
-  constructor(id, tickets = []) {
-    this.id = id;
-    this.tickets = tickets;
-  }
+const TicketmachineSchema = new mongoose.Schema({
+  name: String,
+  age: Number
+});
 
-  buyTicket(event, user) {
-    this.tickets.push(event.createTicket(user));
-  }
+const TicketmachineModel = mongoose.model('Ticketmachine', TicketmachineSchema);
 
-  printAllTickets() {
-    console.log('Tickets:');
-    this.tickets.forEach((ticket) => console.log('for ' + Chalk.red(ticket.userName) + ': ' + Chalk.bgGreenBright.black(ticket.eventTitle) + Chalk.yellow(' EUR ') + Chalk.yellow(ticket.price)));
-  }
+module.exports = TicketmachineModel;
 
-  printTicketsForUser(user) {
-    console.log('Tickets for ' + Chalk.red(user.name) + ':');
-    this.tickets
-      .filter((ticket) => ticket.userName == user.name)
-      .forEach((ticket) => console.log(Chalk.blue(ticket.eventTitle) + ' EUR ' + ticket.price));
-  }
+// const Ticket = require('./ticket');
 
-  getAllTickets() {
-    return this.tickets;
-  }
+// module.exports = class TicketMachine {
+//   constructor(id, tickets = []) {
+//     this.id = id;
+//     this.tickets = tickets;
+//   }
+
+//   buyTicket(event, user) {
+//     this.tickets.push(event.createTicket(user));
+//   }
+
+//   printAllTickets() {
+//     console.log('Tickets:');
+//     this.tickets.forEach((ticket) => console.log('for ' + ticket.userName + ': ' + ticket.eventTitle + ' EUR ' + ticket.price));
+//   }
+
+//   printTicketsForUser(user) {
+//     console.log('Tickets for ' + user.name + ':');
+//     this.tickets
+//       .filter((ticket) => ticket.userName == user.name)
+//       .forEach((ticket) => console.log(ticket.eventTitle + ' EUR ' + ticket.price));
+//   }
+
+//   getAllTickets() {
+//     return this.tickets;
+//   }
   
-  getTicketsForUser(user) {
-    return this.tickets.filter((ticket) => ticket.userName == user.name);
-  }
+//   getTicketsForUser(user) {
+//     return this.tickets.filter((ticket) => ticket.userName == user.name);
+//   }
 
-  static create({ id, tickets}) {
-    return new TicketMachine(
-      id,
-      tickets.map(Ticket.create)
-    );
-  } 
+//   static create({ id, tickets}) {
+//     return new TicketMachine(
+//       id,
+//       tickets.map(Ticket.create)
+//     );
+//   } 
   
-};
+// };
