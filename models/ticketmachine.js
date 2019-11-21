@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
 const TicketmachineSchema = new mongoose.Schema({
-  name: String,
-  age: Number
+  tickets: String
 });
 
 const TicketmachineModel = mongoose.model('Ticketmachine', TicketmachineSchema);
