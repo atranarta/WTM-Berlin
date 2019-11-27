@@ -1,9 +1,21 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-  name: String,
-  age: Number
+  name: {
+    type: String,
+    required: true,
+    minlength: 2
+  },
+  age: {
+    type: Number,
+    required: true,
+    min: 0
+  }
 });
+
+UserSchema.method.attend = function() {
+  this.events.push;
+}
 
 const UserModel = mongoose.model('User', UserSchema);
 

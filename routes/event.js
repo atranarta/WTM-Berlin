@@ -5,12 +5,13 @@ const EventService = require('../services/event-service');
 
 router.get('/all', async (req, res) => {
   const events = await EventService.findAll();
-  res.render('event', { events });  
+  res.send(events);
+  // res.render('event', { events });  
 });
 
 router.get('/:id', async (req, res) => {
   const event = await EventService.find(req.params.id);
-  res.send(event);
+  res.render(event);
 });
 
 router.post('/', async (req, res) => {

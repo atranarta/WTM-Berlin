@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const TicketmachineSchema = new mongoose.Schema({
-  tickets: String
+  tickets: Array
 });
 
 const TicketmachineModel = mongoose.model('Ticketmachine', TicketmachineSchema);

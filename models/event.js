@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
-const Ticket = require('./ticket');
 
 
 const EventSchema = new mongoose.Schema({
   title: String,
-  priceAdult: String,
-  priceReduced: String
+  priceAdult: Number,
+  priceReduced: Number
 });
 
 const EventModel = mongoose.model('Event', EventSchema);
@@ -14,7 +13,7 @@ module.exports = EventModel;
 
 
 
-
+// const Ticket = require('./ticket');
 // module.exports = class Event {
 //   constructor(title, priceAdult, priceReduced, id) {
 //     this.title = title;

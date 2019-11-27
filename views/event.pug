@@ -3,4 +3,5 @@ extends layout
 block content
   h1 #{events.length} events available:
   each event in events
-    h4 #{event.title}: Regular Ticket – #{event.priceAdult}, Reduced Ticket – #{event.priceReduced}
+    p  #{event.title}
+    //- h4 #{event.title}: Regular Ticket – #{event.priceAdult}, Reduced Ticket – #{event.priceReduced}
